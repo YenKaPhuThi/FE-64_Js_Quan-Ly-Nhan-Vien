@@ -13,6 +13,14 @@ function createEle(ele) {
   return document.createElement(ele);
 }
 
+// Handle delete employee
+function handleDeleteEmployee(btnEle) {
+  btnEle.onclick = function () {
+    var rowParrent = btnEle.closest("tr");
+    rowParrent.remove();
+  };
+}
+
 // Handle add employee
 function handleAddEmpoyee() {
   getMyEleId("btnAddEmployee").addEventListener("click", function () {
@@ -74,14 +82,7 @@ function handleAddEmpoyee() {
     // Append rows into table
     getMyEleSelector("#employeeTableBody").appendChild(row);
 
-    function handleDeleteEmployee() {
-      btnDelete.onclick = function () {
-        var rowParrent = btnDelete.closest("tr");
-        rowParrent.remove();
-      };
-    }
-
-    handleDeleteEmployee();
+    handleDeleteEmployee(btnDelete);
   });
 }
 
