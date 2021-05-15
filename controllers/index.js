@@ -29,12 +29,10 @@ function handleAddEmpoyee() {
     employee.indexTitle = getMyEleSelector("#title").value;
     employee.timeWork = getMyEleSelector("#timeWork").value;
 
-    console.log(employee.code);
-    console.log(employee.name);
-    console.log(employee.title);
-    console.log(employee.salary);
-    console.log(employee.indexTitle);
-    console.log(employee.timeWork);
+    // Create btn and handle delete
+    var btnDelete = createEle("button");
+    btnDelete.innerHTML = "Xoá";
+    btnDelete.className = "btn btn-danger";
 
     // Create td tags
     var cellCode = createEle("td");
@@ -59,7 +57,7 @@ function handleAddEmpoyee() {
     cellLevel.innerHTML = employee.handleArrangeLevel();
 
     var cellAction = createEle("td");
-    cellAction.innerHTML = "";
+    cellAction.appendChild(btnDelete);
 
     // Create tr tags
     var row = createEle("tr");
@@ -75,6 +73,15 @@ function handleAddEmpoyee() {
 
     // Append rows into table
     getMyEleSelector("#employeeTableBody").appendChild(row);
+
+    function handleDeleteEmployee() {
+      btnDelete.onclick = function () {
+        var rowParrent = btnDelete.closest("tr");
+        rowParrent.remove();
+      };
+    }
+
+    handleDeleteEmployee();
   });
 }
 
