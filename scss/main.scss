@@ -1,0 +1,38 @@
+// Begin Reset Default Browser
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+dl,
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+}
+
+button:focus {
+  outline: none;
+}
+// End Reset Default Browser
+
+// Begin Main Css
+.form-group {
+  position: relative;
+
+  .error-msg {
+    color: #721c24;
+    display: none;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+// End Main Css
