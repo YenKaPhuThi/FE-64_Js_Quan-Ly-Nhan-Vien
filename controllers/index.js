@@ -49,14 +49,32 @@ function handleAddEmpoyee() {
     var cellSalary = createEle("td");
     cellSalary.innerHTML = employee.salary;
 
-    var cellSummSalary = createEle("td");
-    cellSummSalary.innerHTML = employee.handleCaculateSalary();
+    var cellSumSalary = createEle("td");
+    cellSumSalary.innerHTML = employee.handleCaculateSalary();
+
+    var cellTimeWork = createEle("td");
+    cellTimeWork.innerHTML = employee.timeWork;
 
     var cellLevel = createEle("td");
     cellLevel.innerHTML = employee.handleArrangeLevel();
 
     var cellAction = createEle("td");
     cellAction.innerHTML = "";
+
+    // Create tr tags
+    var row = createEle("tr");
+    row.appendChild(cellCode);
+    row.appendChild(cellName);
+    row.appendChild(cellTitle);
+    row.appendChild(cellSalary);
+    row.appendChild(cellSumSalary);
+    row.appendChild(cellSumSalary);
+    row.appendChild(cellTimeWork);
+    row.appendChild(cellLevel);
+    row.appendChild(cellAction);
+
+    // Append rows into table
+    getMyEleSelector("#employeeTableBody").appendChild(row);
   });
 }
 

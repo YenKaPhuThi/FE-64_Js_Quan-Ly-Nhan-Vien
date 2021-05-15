@@ -7,6 +7,8 @@ function Employee() {
   this.indexTitle = "";
   this.handleCaculateSalary = function () {
     var salary = this.salary * this.indexTitle;
+
+    return salary;
   };
   this.handleArrangeLevel = function () {
     var level = "";
