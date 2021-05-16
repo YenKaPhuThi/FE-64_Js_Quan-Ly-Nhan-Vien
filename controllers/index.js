@@ -94,6 +94,14 @@ function handleAddEmpoyee() {
         "Số giờ làm trong tháng"
       );
 
+    valid &=
+      validator.checkNumber(employee.salary, "salaryErorr", "Lương cơ bản") &
+      validator.checkNumber(
+        employee.timeWork,
+        "timeWorkErorr",
+        "Số giờ làm trong tháng"
+      );
+
     if (!valid) {
       return null;
     }

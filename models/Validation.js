@@ -17,4 +17,25 @@ function Validation() {
       return false;
     }
   };
+
+  this.checkNumber = function (value, field, name) {
+    var regexNumber = /^[0-9]+$/;
+
+    if (value.trim() == "") {
+      getMyEleId(field).innerHTML = name + " không được bỏ trống!";
+
+      return null;
+    }
+
+    if (regexNumber.test(value)) {
+      getMyEleId(field).style.display = "none";
+
+      return true;
+    } else {
+      getMyEleId(field).style.display = "block";
+      getMyEleId(field).innerHTML = name + " không phải là số!";
+
+      return false;
+    }
+  };
 }
