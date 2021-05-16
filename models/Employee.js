@@ -14,13 +14,13 @@ function Employee() {
     var level = "";
 
     if (this.timeWork >= 120) {
-      level = "Xuất sắc";
+      level = "Nhân viên xuất sắc";
     } else if (100 <= this.timeWork && this.timeWork < 120) {
-      level = "Giỏi";
+      level = "Nhân viên giỏi";
     } else if (75 <= this.timeWork && this.timeWork < 100) {
-      level = "Khá";
+      level = "Nhân viên khá";
     } else {
-      level = "Trung bình";
+      level = "Nhân viên trung bình";
     }
 
     return level;
