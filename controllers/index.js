@@ -23,6 +23,8 @@ function handleDeleteEmployee(btnEle) {
 
 // Handle add employee
 function handleAddEmpoyee() {
+  var validator = new Validation();
+
   getMyEleId("btnAddEmployee").addEventListener("click", function () {
     var employee = new Employee();
 
@@ -78,6 +80,23 @@ function handleAddEmpoyee() {
     row.appendChild(cellTimeWork);
     row.appendChild(cellLevel);
     row.appendChild(cellAction);
+
+    // Check validation
+    var valid = true;
+
+    valid &=
+      validator.checkEmpty(employee.code, "codeErorr", "Mã") &
+      validator.checkEmpty(employee.name, "nameErorr", "Tên") &
+      validator.checkEmpty(employee.salary, "salaryErorr", "Lương cơ bản") &
+      validator.checkEmpty(
+        employee.timeWork,
+        "timeWorkErorr",
+        "Số giờ làm trong tháng"
+      );
+
+    if (!valid) {
+      return null;
+    }
 
     // Append rows into table
     getMyEleSelector("#employeeTableBody").appendChild(row);

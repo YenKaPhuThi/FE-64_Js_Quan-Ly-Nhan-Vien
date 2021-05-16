@@ -24,7 +24,7 @@ button:focus {
 }
 
 .form-group .error-msg {
-  color: #721c24;
+  color: #dc3545;
   display: none;
   position: absolute;
   right: 0;
