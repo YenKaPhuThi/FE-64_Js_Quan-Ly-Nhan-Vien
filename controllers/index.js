@@ -85,8 +85,8 @@ function handleAddEmpoyee() {
     var valid = true;
 
     valid &=
-      validator.checkEmpty(employee.code, "codeErorr", "Mã") &
-      validator.checkEmpty(employee.name, "nameErorr", "Tên") &
+      validator.checkEmpty(employee.code, "codeErorr", "Mã nhân viên") &
+      validator.checkEmpty(employee.name, "nameErorr", "Tên nhân viên") &
       validator.checkEmpty(employee.salary, "salaryErorr", "Lương cơ bản") &
       validator.checkEmpty(
         employee.timeWork,
@@ -101,6 +101,13 @@ function handleAddEmpoyee() {
         "timeWorkErorr",
         "Số giờ làm trong tháng"
       );
+
+    valid &= validator.checkMinLength(
+      employee.code,
+      "codeErorr",
+      4,
+      "Mã nhân viên"
+    );
 
     if (!valid) {
       return null;

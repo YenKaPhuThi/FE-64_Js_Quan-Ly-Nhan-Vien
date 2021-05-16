@@ -33,9 +33,27 @@ function Validation() {
       return true;
     } else {
       getMyEleId(field).style.display = "block";
-      getMyEleId(field).innerHTML = name + " không phải là số!";
+      getMyEleId(field).innerHTML = name + " phải nhập từ 0 đến 9!";
 
       return false;
     }
+  };
+
+  this.checkMinLength = function (value, field, minLength, name) {
+    if (value.trim() == "") {
+      getMyEleId(field).innerHTML = name + " không được bỏ trống!";
+
+      return null;
+    }
+
+    if (value.length < minLength) {
+      getMyEleId(field).style.display = "block";
+      getMyEleId(field).innerHTML =
+        name + " nhập ít nhất" + minLength + " kí tự!";
+
+      return true;
+    }
+
+    return false;
   };
 }
