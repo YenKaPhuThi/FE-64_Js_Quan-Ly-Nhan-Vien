@@ -22,6 +22,7 @@ function Validation() {
     var regexNumber = /^[0-9]+$/;
 
     if (value.trim() == "") {
+      getMyEleId(field).style.display = "block";
       getMyEleId(field).innerHTML = name + " không được bỏ trống!";
 
       return null;
@@ -41,6 +42,7 @@ function Validation() {
 
   this.checkMinLength = function (value, field, minLength, name) {
     if (value.trim() == "") {
+      getMyEleId(field).style.display = "block";
       getMyEleId(field).innerHTML = name + " không được bỏ trống!";
 
       return null;
@@ -51,9 +53,11 @@ function Validation() {
       getMyEleId(field).innerHTML =
         name + " nhập ít nhất" + minLength + " kí tự!";
 
+      return false;
+    } else {
+      getMyEleId(field).style.display = "none";
+
       return true;
     }
-
-    return false;
   };
 }
