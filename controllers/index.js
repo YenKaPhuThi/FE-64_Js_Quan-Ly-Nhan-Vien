@@ -21,6 +21,13 @@ function handleDeleteEmployee(btnEle) {
   };
 }
 
+// Handle save data to storage
+function handleSaveDataStorage(object) {
+  var arrEmployee = JSON.stringify(object);
+
+  localStorage.setItem("employee", arrEmployee);
+}
+
 // Handle add employee
 function handleAddEmpoyee() {
   var validator = new Validation();
@@ -117,6 +124,7 @@ function handleAddEmpoyee() {
     getMyEleSelector("#employeeTableBody").appendChild(row);
 
     handleDeleteEmployee(btnDelete);
+    handleSaveDataStorage(employee);
   });
 }
 
