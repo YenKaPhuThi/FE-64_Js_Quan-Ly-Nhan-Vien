@@ -13,6 +13,11 @@ function createEle(ele) {
   return document.createElement(ele);
 }
 
+// Define global variables
+var arrEmployee = [];
+
+// Render employee table
+
 // Handle delete employee
 function handleDeleteEmployee(btnEle) {
   btnEle.onclick = function () {
@@ -30,10 +35,9 @@ function handleSaveDataStorage(object) {
 
 // Handle add employee
 function handleAddEmpoyee() {
-  var validator = new Validation();
-
   getMyEleId("btnAddEmployee").addEventListener("click", function () {
     var employee = new Employee();
+    var validator = new Validation();
 
     var title = getMyEleSelector("#title");
     var titleSelected = title[title.selectedIndex];
@@ -119,6 +123,11 @@ function handleAddEmpoyee() {
     if (!valid) {
       return null;
     }
+
+    // Push Employee into array
+    arrEmployee.push(employee);
+
+    console.log("arrEmployee", arrEmployee);
 
     // Append rows into table
     getMyEleSelector("#employeeTableBody").appendChild(row);
