@@ -1,28 +1,25 @@
-// Get element by id
-function getMyEleId(ele) {
+// Variables
+var arrEmployee = [];
+var validator = new Validation();
+
+// Get element by Id
+function getEleById(ele) {
   return document.getElementById(ele);
 }
 
-// Get element by selector
-function getMyEleSelector(ele) {
+// Get element by query selector
+function getEleBySelector(ele) {
   return document.querySelector(ele);
 }
 
-// Create element
-function createEle(ele) {
-  return document.createElement(ele);
-}
-
-// Define global variables
-var arrEmployee = [];
-
-// Render employee table
-function renderEmployeeTable(arrEmployee) {
-  var contentTable = "";
+// Render table row
+function renderTableRow(arrEmployee) {
+  var tableRow = "";
 
   for (var i = 0; i < arrEmployee.length; i++) {
     var employee = arrEmployee[i];
-    contentTable += `<tr>
+
+    tableRow += `<tr>
       <td>${employee.code}</td>
       <td>${employee.name}</td>
       <td>${employee.title}</td>
@@ -37,40 +34,30 @@ function renderEmployeeTable(arrEmployee) {
     </tr>`;
   }
 
-  getMyEleId("employeeTableBody").innerHTML = contentTable;
-}
-
-// Handle delete employee
-function handleDeleteEmployee(btnEle) {
-  btnEle.onclick = function () {
-    var rowParrent = btnEle.closest("tr");
-    rowParrent.remove();
-  };
+  getEleById("employeeTableBody").innerHTML = tableRow;
 }
 
 // Handle save data to storage
-function handleSaveDataStorage(object) {
-  var arrEmployee = JSON.stringify(object);
+function handleSaveDataStorage(employee) {
+  var arrEmployee = JSON.stringify(employee);
 
   localStorage.setItem("employee", arrEmployee);
 }
 
-// Handle add employee
-function handleAddEmpoyee() {
-  getMyEleId("btnAddEmployee").addEventListener("click", function () {
+function handleAddEmployee() {
+  getEleById("btnAddEmployee").onclick = function () {
     var employee = new Employee();
-    var validator = new Validation();
 
-    var title = getMyEleSelector("#title");
+    var title = getEleBySelector("#title");
     var titleSelected = title[title.selectedIndex];
 
     // Assigne value's getted from dom to employee
-    employee.code = getMyEleSelector("#code").value;
-    employee.name = getMyEleSelector("#name").value;
     employee.title = titleSelected.innerHTML;
-    employee.salary = getMyEleSelector("#salary").value;
-    employee.indexTitle = getMyEleSelector("#title").value;
-    employee.timeWork = getMyEleSelector("#timeWork").value;
+    employee.code = getEleBySelector("#code").value;
+    employee.name = getEleBySelector("#name").value;
+    employee.salary = getEleBySelector("#salary").value;
+    employee.indexTitle = getEleBySelector("#title").value;
+    employee.timeWork = getEleBySelector("#timeWork").value;
 
     // Check validation
     var valid = true;
@@ -104,14 +91,15 @@ function handleAddEmpoyee() {
       return null;
     }
 
-    // Push Employee into array
+    // Push employees to array
     arrEmployee.push(employee);
 
-    // Init renderEmployeeTable();
-    renderEmployeeTable(arrEmployee);
+    // Init table
+    renderTableRow(arrEmployee);
 
+    // Init save data into storage
     handleSaveDataStorage(employee);
-  });
+  };
 }
 
-handleAddEmpoyee();
+handleAddEmployee();

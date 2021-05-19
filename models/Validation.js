@@ -1,18 +1,18 @@
-// Get element by selector
-function getMyEleId(ele) {
-  return document.querySelector(ele);
+// Get element by Id
+function getEleById(ele) {
+  return document.getElementById(ele);
 }
 
 // Handle Validation
 function Validation() {
   this.checkEmpty = function (value, field, name) {
     if (value.trim() !== "") {
-      getMyEleId(field).style.display = "none";
+      getEleById(field).style.display = "none";
 
       return true;
     } else {
-      getMyEleId(field).style.display = "block";
-      getMyEleId(field).innerHTML = name + " không được bỏ trống!";
+      getEleById(field).style.display = "block";
+      getEleById(field).innerHTML = name + " không được bỏ trống!";
 
       return false;
     }
@@ -22,19 +22,19 @@ function Validation() {
     var regexNumber = /^[0-9]+$/;
 
     if (value.trim() == "") {
-      getMyEleId(field).style.display = "block";
-      getMyEleId(field).innerHTML = name + " không được bỏ trống!";
+      getEleById(field).style.display = "block";
+      getEleById(field).innerHTML = name + " không được bỏ trống!";
 
       return null;
     }
 
     if (regexNumber.test(value)) {
-      getMyEleId(field).style.display = "none";
+      getEleById(field).style.display = "none";
 
       return true;
     } else {
-      getMyEleId(field).style.display = "block";
-      getMyEleId(field).innerHTML = name + " phải nhập từ 0 đến 9!";
+      getEleById(field).style.display = "block";
+      getEleById(field).innerHTML = name + " phải nhập từ 0 đến 9!";
 
       return false;
     }
@@ -42,20 +42,20 @@ function Validation() {
 
   this.checkMinLength = function (value, field, minLength, name) {
     if (value.trim() == "") {
-      getMyEleId(field).style.display = "block";
-      getMyEleId(field).innerHTML = name + " không được bỏ trống!";
+      getEleById(field).style.display = "block";
+      getEleById(field).innerHTML = name + " không được bỏ trống!";
 
       return null;
     }
 
     if (value.length < minLength) {
-      getMyEleId(field).style.display = "block";
-      getMyEleId(field).innerHTML =
+      getEleById(field).style.display = "block";
+      getEleById(field).innerHTML =
         name + " nhập ít nhất" + minLength + " kí tự!";
 
       return false;
     } else {
-      getMyEleId(field).style.display = "none";
+      getEleById(field).style.display = "none";
 
       return true;
     }
