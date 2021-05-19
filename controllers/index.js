@@ -31,7 +31,9 @@ function renderTableRow(arrEmployee) {
       <button class="btn btn-danger" onclick="handleDeleteEmployee('${
         employee.code
       }')">Xoá</button>
-        <button class="btn btn-primary">Sửa</button>
+        <button class="btn btn-primary" onclick="handleEditEmployee('${
+          employee.code
+        }')">Sửa</button>
       </td>
     </tr>`;
   }
@@ -49,6 +51,21 @@ function handleDeleteEmployee(employeeCode) {
     }
   }
   renderTableRow(arrEmployee);
+}
+
+// Handle edit employee from array
+function handleEditEmployee(employeeCode) {
+  for (var i = 0; i < arrEmployee.length; i++) {
+    var employee = arrEmployee[i];
+
+    if (employee.code == employeeCode) {
+      getEleBySelector("#code").value = employee.code;
+      getEleBySelector("#name").value = employee.name;
+      getEleBySelector("#salary").value = employee.salary;
+      getEleBySelector("#title").value = employee.indexTitle;
+      getEleBySelector("#timeWork").value = employee.timeWork;
+    }
+  }
 }
 
 // Handle save data to storage
