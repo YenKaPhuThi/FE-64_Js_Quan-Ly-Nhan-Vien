@@ -17,6 +17,28 @@ function createEle(ele) {
 var arrEmployee = [];
 
 // Render employee table
+function renderEmployeeTable(arrEmployee) {
+  var contentTable = "";
+
+  for (var i = 0; i < arrEmployee.length; i++) {
+    var employee = arrEmployee[i];
+    contentTable += `<tr>
+      <td>${employee.code}</td>
+      <td>${employee.name}</td>
+      <td>${employee.title}</td>
+      <td>${employee.salary}</td>
+      <td>${employee.timeWork}</td>
+      <td>${employee.handleCaculateSalary()}</td>
+      <td>${employee.handleArrangeLevel()}</td>
+      <td>
+        <button class="btn btn-danger">Xoá</button>
+        <button class="btn btn-primary">Sửa</button>
+      </td>
+    </tr>`;
+  }
+
+  getMyEleId("employeeTableBody").innerHTML = contentTable;
+}
 
 // Handle delete employee
 function handleDeleteEmployee(btnEle) {
@@ -49,48 +71,6 @@ function handleAddEmpoyee() {
     employee.salary = getMyEleSelector("#salary").value;
     employee.indexTitle = getMyEleSelector("#title").value;
     employee.timeWork = getMyEleSelector("#timeWork").value;
-
-    // Create btn and handle delete
-    var btnDelete = createEle("button");
-    btnDelete.innerHTML = "Xoá";
-    btnDelete.className = "btn btn-danger";
-
-    // Create td tags
-    var cellCode = createEle("td");
-    cellCode.innerHTML = employee.code;
-
-    var cellName = createEle("td");
-    cellName.innerHTML = employee.name;
-
-    var cellTitle = createEle("td");
-    cellTitle.innerHTML = employee.title;
-
-    var cellSalary = createEle("td");
-    cellSalary.innerHTML = employee.salary;
-
-    var cellSumSalary = createEle("td");
-    cellSumSalary.innerHTML = employee.handleCaculateSalary();
-
-    var cellTimeWork = createEle("td");
-    cellTimeWork.innerHTML = employee.timeWork;
-
-    var cellLevel = createEle("td");
-    cellLevel.innerHTML = employee.handleArrangeLevel();
-
-    var cellAction = createEle("td");
-    cellAction.appendChild(btnDelete);
-
-    // Create tr tags
-    var row = createEle("tr");
-    row.appendChild(cellCode);
-    row.appendChild(cellName);
-    row.appendChild(cellTitle);
-    row.appendChild(cellSalary);
-    row.appendChild(cellSumSalary);
-    row.appendChild(cellSumSalary);
-    row.appendChild(cellTimeWork);
-    row.appendChild(cellLevel);
-    row.appendChild(cellAction);
 
     // Check validation
     var valid = true;
@@ -127,12 +107,9 @@ function handleAddEmpoyee() {
     // Push Employee into array
     arrEmployee.push(employee);
 
-    console.log("arrEmployee", arrEmployee);
+    // Init renderEmployeeTable();
+    renderEmployeeTable(arrEmployee);
 
-    // Append rows into table
-    getMyEleSelector("#employeeTableBody").appendChild(row);
-
-    handleDeleteEmployee(btnDelete);
     handleSaveDataStorage(employee);
   });
 }
