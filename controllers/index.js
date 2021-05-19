@@ -28,13 +28,27 @@ function renderTableRow(arrEmployee) {
       <td>${employee.handleCaculateSalary()}</td>
       <td>${employee.handleArrangeLevel()}</td>
       <td>
-        <button class="btn btn-danger">Xoá</button>
+      <button class="btn btn-danger" onclick="handleDeleteEmployee('${
+        employee.code
+      }')">Xoá</button>
         <button class="btn btn-primary">Sửa</button>
       </td>
     </tr>`;
   }
 
   getEleById("employeeTableBody").innerHTML = tableRow;
+}
+
+// Handle delete employee from array
+function handleDeleteEmployee(employeeCode) {
+  for (var i = arrEmployee.length - 1; i >= 0; i--) {
+    var employee = arrEmployee[i];
+
+    if (employee.code == employeeCode) {
+      arrEmployee.splice(i, 1);
+    }
+  }
+  renderTableRow(arrEmployee);
 }
 
 // Handle save data to storage
