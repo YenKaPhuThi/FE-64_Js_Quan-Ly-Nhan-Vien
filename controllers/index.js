@@ -111,10 +111,11 @@ function handleAddEmployee() {
         "Số giờ làm trong tháng"
       );
 
-    valid &= validator.checkMinLength(
+    valid &= validator.checkLength(
       employee.code,
       "codeErorr",
       4,
+      6,
       "Mã nhân viên"
     );
 

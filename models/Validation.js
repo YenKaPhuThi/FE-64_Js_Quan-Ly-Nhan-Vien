@@ -40,7 +40,7 @@ function Validation() {
     }
   };
 
-  this.checkMinLength = function (value, field, minLength, name) {
+  this.checkLength = function (value, field, minLength, maxLength, name) {
     if (value.trim() == "") {
       getEleById(field).style.display = "block";
       getEleById(field).innerHTML = name + " không được bỏ trống!";
@@ -48,10 +48,10 @@ function Validation() {
       return null;
     }
 
-    if (value.length < minLength) {
+    if (value.length < minLength || value.length > maxLength) {
       getEleById(field).style.display = "block";
       getEleById(field).innerHTML =
-        name + " nhập ít nhất" + minLength + " kí tự!";
+        name + " nhập từ " + minLength + " đến " + maxLength + " kí tự!";
 
       return false;
     } else {
