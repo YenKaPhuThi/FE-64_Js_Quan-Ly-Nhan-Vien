@@ -1,10 +1,10 @@
-function Employee() {
-  this.code = "";
-  this.name = "";
-  this.title = "";
-  this.salary = "";
-  this.timeWork = "";
-  this.indexTitle = "";
+function Employee(code, name, title, salary, timeWork, indexTitle) {
+  this.code = code;
+  this.name = name;
+  this.title = title;
+  this.salary = salary;
+  this.timeWork = timeWork;
+  this.indexTitle = indexTitle;
   this.handleCaculateSalary = function () {
     var salary = this.salary * this.indexTitle;
 
