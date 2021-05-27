@@ -105,7 +105,7 @@ function handleAddEmployee() {
   getEleById("btnAddEmployee").addEventListener("click", function () {
     var employee = new Employee();
 
-    // Assigne value's getted from dom to employee
+    // Assigne value's getted from dom to Employee
     var title = getEleBySelector("#title");
     var titleSelected = title[title.selectedIndex];
 
@@ -160,5 +160,40 @@ function handleAddEmployee() {
   });
 }
 
+// Handle save employee
+function handleSaveEmployee() {
+  getEleById("btnSaveEmployee").addEventListener("click", function () {
+    var employee = new Employee();
+
+    // Assigne value's getted from dom to Employee
+    var title = getEleBySelector("#title");
+    var titleSelected = title[title.selectedIndex];
+
+    employee.title = titleSelected.innerHTML;
+    employee.code = getEleBySelector("#code").value;
+    employee.name = getEleBySelector("#name").value;
+    employee.salary = getEleBySelector("#salary").value;
+    employee.indexTitle = getEleBySelector("#title").value;
+    employee.timeWork = getEleBySelector("#timeWork").value;
+    console.log(employee);
+
+    for (var i = 0; i < arrEmployee.length; i++) {
+      var elUpdate = arrEmployee[i];
+
+      if (elUpdate.code === employee.code) {
+        elUpdate.code = employee.code;
+        elUpdate.name = employee.name;
+        elUpdate.title = employee.title;
+        elUpdate.salary = employee.salary;
+        elUpdate.timeWork = employee.timeWork;
+      }
+    }
+
+    // Init render table row
+    renderTableRow(arrEmployee);
+  });
+}
+
 handleAddEmployee();
+handleSaveEmployee();
 handleGetDataStorage();
