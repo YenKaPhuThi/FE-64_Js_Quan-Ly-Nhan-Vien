@@ -76,6 +76,8 @@ function handleEditEmployee(employeeCode) {
       getEleBySelector("#timeWork").value = employee.timeWork;
     }
   }
+
+  getEleById("btnSaveEmployee").disabled = false;
 }
 
 // Handle save data to storage
@@ -175,7 +177,6 @@ function handleSaveEmployee() {
     employee.salary = getEleBySelector("#salary").value;
     employee.indexTitle = getEleBySelector("#title").value;
     employee.timeWork = getEleBySelector("#timeWork").value;
-    console.log(employee);
 
     for (var i = 0; i < arrEmployee.length; i++) {
       var elUpdate = arrEmployee[i];
