@@ -12,6 +12,46 @@ function getEleBySelector(ele) {
   return document.querySelector(ele);
 }
 
+// Get element by query selector all
+function getEleBySelectorAll(ele) {
+  return document.querySelectorAll(ele);
+}
+
+// Check validation
+function checkValidation(employee) {
+  var valid = true;
+
+  valid &=
+    validator.checkEmpty(employee.code, "codeErorr", "Mã nhân viên") &
+    validator.checkEmpty(employee.name, "nameErorr", "Tên nhân viên") &
+    validator.checkEmpty(employee.salary, "salaryErorr", "Lương cơ bản") &
+    validator.checkEmpty(
+      employee.timeWork,
+      "timeWorkErorr",
+      "Số giờ làm trong tháng"
+    );
+
+  valid &=
+    validator.checkNumber(employee.salary, "salaryErorr", "Lương cơ bản") &
+    validator.checkNumber(
+      employee.timeWork,
+      "timeWorkErorr",
+      "Số giờ làm trong tháng"
+    );
+
+  valid &= validator.checkLength(
+    employee.code,
+    "codeErorr",
+    4,
+    6,
+    "Mã nhân viên"
+  );
+
+  if (!valid) {
+    return null;
+  }
+}
+
 // Render table row
 function renderTableRow(arrEmployee) {
   var tableRow = "";
@@ -65,6 +105,13 @@ function handleDeleteEmployee(employeeCode) {
 
 // Handle edit employee from array
 function handleEditEmployee(employeeCode) {
+  // Disappear error messages
+  var errorMsg = getEleBySelectorAll(".error-msg");
+
+  for (var i = 0; i < errorMsg.length; i++) {
+    errorMsg[i].style.display = "none";
+  }
+
   for (var i = 0; i < arrEmployee.length; i++) {
     var employee = arrEmployee[i];
 
@@ -78,28 +125,6 @@ function handleEditEmployee(employeeCode) {
   }
 
   getEleById("btnSaveEmployee").disabled = false;
-}
-
-// Handle save data to storage
-function handleSaveDataStorage() {
-  // Convert employee array to string before saving
-  var sArrEmployee = JSON.stringify(arrEmployee);
-  localStorage.setItem("arrEmployee", sArrEmployee);
-}
-
-// Handle get data from storage
-function handleGetDataStorage() {
-  // Check there is any data in storage
-  if (localStorage.getItem("arrEmployee")) {
-    // Get data from local storage
-    var sArrEmployee = localStorage.getItem("arrEmployee");
-
-    // Convert data to array and assign to Employee
-    arrEmployee = JSON.parse(sArrEmployee);
-
-    // Init render table row
-    renderTableRow(arrEmployee);
-  }
 }
 
 // Handle add employee
@@ -119,37 +144,7 @@ function handleAddEmployee() {
     employee.timeWork = getEleBySelector("#timeWork").value;
 
     // Check validation if it pass then push Employee to array
-    var valid = true;
-
-    valid &=
-      validator.checkEmpty(employee.code, "codeErorr", "Mã nhân viên") &
-      validator.checkEmpty(employee.name, "nameErorr", "Tên nhân viên") &
-      validator.checkEmpty(employee.salary, "salaryErorr", "Lương cơ bản") &
-      validator.checkEmpty(
-        employee.timeWork,
-        "timeWorkErorr",
-        "Số giờ làm trong tháng"
-      );
-
-    valid &=
-      validator.checkNumber(employee.salary, "salaryErorr", "Lương cơ bản") &
-      validator.checkNumber(
-        employee.timeWork,
-        "timeWorkErorr",
-        "Số giờ làm trong tháng"
-      );
-
-    valid &= validator.checkLength(
-      employee.code,
-      "codeErorr",
-      4,
-      6,
-      "Mã nhân viên"
-    );
-
-    if (!valid) {
-      return null;
-    }
+    checkValidation(employee);
 
     // Push each Employee to array when click on btn
     arrEmployee.push(employee);
@@ -193,6 +188,28 @@ function handleSaveEmployee() {
     // Init render table row
     renderTableRow(arrEmployee);
   });
+}
+
+// Handle save data to storage
+function handleSaveDataStorage() {
+  // Convert employee array to string before saving
+  var sArrEmployee = JSON.stringify(arrEmployee);
+  localStorage.setItem("arrEmployee", sArrEmployee);
+}
+
+// Handle get data from storage
+function handleGetDataStorage() {
+  // Check there is any data in storage
+  if (localStorage.getItem("arrEmployee")) {
+    // Get data from local storage
+    var sArrEmployee = localStorage.getItem("arrEmployee");
+
+    // Convert data to array and assign to Employee
+    arrEmployee = JSON.parse(sArrEmployee);
+
+    // Init render table row
+    renderTableRow(arrEmployee);
+  }
 }
 
 handleAddEmployee();
