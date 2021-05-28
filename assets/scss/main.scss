@@ -1,4 +1,4 @@
-// Begin Reset Default Browser
+// #Begin Reset Default Browser
 * {
   margin: 0;
   padding: 0;
@@ -19,9 +19,9 @@ ul {
 button:focus {
   outline: none;
 }
-// End Reset Default Browser
+// #End Reset Default Browser
 
-// Begin Main Css
+// #Begin Main Css
 .wrapper {
   padding: 2rem 0;
 }
@@ -38,5 +38,4 @@ button:focus {
     top: 0;
   }
 }
-
-// End Main Css
+// #End Main Css

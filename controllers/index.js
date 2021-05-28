@@ -81,7 +81,7 @@ function renderTableRow(arrEmployee) {
       <button class="btn btn-danger" onclick="handleDeleteEmployee('${
         employee.code
       }')">Xoá</button>
-        <button class="btn btn-primary" onclick="handleEditEmployee('${
+        <button class="btn btn-primary ml-2" onclick="handleEditEmployee('${
           employee.code
         }')">Sửa</button>
       </td>
